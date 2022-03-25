@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <title>My Awesome Site</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <svg id="svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#44CD22" fill-opacity="0.35"></svg>
+    </main>
+    <script>
+        var svgElem=document.getElementById("svg");
+        var cx=16;
+        var cy=16;
+        var rx=12;
+        var ry=12;
+
+        var p = svgElem.createSVGPoint();
+        p.x = 0;
+        p.y = 1;
+
+
+        var m = svgElem.createSVGMatrix();
+
+
+        var p2 = p.matrixTransform(m.rotate(100));
+        p2.x = cx + p2.x*rx;
+        p2.y = cy + p2.y*ry;
+
+        console.log(p2.x,p2.y);
+
+        var path = document.createElementNS("http://www.w3.org/2000/svg","path");
+        svgElem.appendChild(path);
+        var d="M"+cx+" "+(cy+ry)+"A"+rx+" "+ry+" 0 0 1"+p2.x+" "+p2.y+"L"+cx+" "+cy+"z";
+        path.setAttribute("d",d)
+    </script>
+</body>
+</html>
